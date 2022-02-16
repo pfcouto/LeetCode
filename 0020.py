@@ -1,24 +1,9 @@
 class Solution:
 
     def isValid(self, s: str) -> bool:
-        map = {
-
-            ")": "(",
-            "}": "{",
-            "]": "["
-        }
-
-        if len(s) % 2 != 0:
-            return False
-
-        stack = []
-        for ch in s:
-            if stack and map.get(ch) == stack[-1]:
-                stack.pop()
-            else:
-                stack.append(ch)
-
-        return not stack
+        while "()" in s or "[]" in s or "{}" in s:
+            s = s.replace("()", "").replace("[]", "").replace("{}", "")
+        return s == ''
 
 
 Solution().isValid("[]{}()[{})")
